@@ -3,6 +3,6 @@ public class ShipCruiser extends Ship{
         super(3);
     }
     public String toString (){
-        return ("Length: " + getLength() + " HP: " + getHP());
+        return (super.toString());
     }
 }

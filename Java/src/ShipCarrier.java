@@ -3,6 +3,6 @@ public class ShipCarrier extends Ship {
         super(5);
     }
     public String toString (){
-        return ("Length: " + super.getLength() + " HP: " + super.getHP());
+        return (super.toString());
     }
 }

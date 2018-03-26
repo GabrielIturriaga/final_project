@@ -3,6 +3,6 @@ public class ShipBattleship extends Ship{
         super(4);
     }
     public String toString (){
-        return ("Length: " + getLength() + " HP: " + getHP());
+        return (super.toString());
     }
 }
