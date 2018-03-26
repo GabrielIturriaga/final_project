@@ -1,4 +1,4 @@
-public abstract class Ship {
+public abstract class Ship{
     // Attributes
 
     private int length;
@@ -13,12 +13,23 @@ public abstract class Ship {
     }
     // Setters
     public void setLength(int length){this.length = length;}
+
     public void setHP(int HP){this.HP = HP;}
     // Getters
     // Will change the void to whatever the return value is supposed to be
     public int getLength(){return length;}
+
     public int getHP(){return HP;}
+
+    public int getShipX() {return point.getX();}
+
+    public void setShipX(int x) {point.setX(x);}
+
+    public int getShipY() {return point.getY();}
+
+    public void setShipY(int y) {point.setY(y);}
+
     public String toString (){
-        return ("Length: " + getLength() + " HP: " + getHP() + " Point: (" + point.getX() + ", " + point.getX() + ")");
+        return ("Length: " + getLength() + " HP: " + getHP() + " Point: (" + getShipX() + ", " + getShipY() + ")");
     }
 }
