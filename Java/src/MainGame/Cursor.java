@@ -70,12 +70,7 @@ public class Cursor{
 
     }
     public void changeRotation(){
-        if (isHorizontal == true){
-            isHorizontal = false;
-        }
-        else{
-            isHorizontal = true;
-        }
+        isHorizontal = !isHorizontal;
     }
     public int getNewMaxCell(int newCell){
         return newCell + cellLength/2;

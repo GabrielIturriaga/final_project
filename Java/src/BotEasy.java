@@ -5,6 +5,7 @@ public class BotEasy {
 
 	//stores points already guessed
 	private ArrayList<Point> guess;
+	private Grid grid;
 
 	public BotEasy(){
 		guess = new ArrayList<>();
@@ -33,5 +34,10 @@ public class BotEasy {
 			}
 		}
 		return true;
+	}
+
+	public void placeShips(){
+		//place ships randomly
+		//assuming no overlap
 	}
 }
