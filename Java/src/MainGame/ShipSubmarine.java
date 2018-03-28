@@ -1,4 +1,8 @@
-public class ShipSubmarine extends Ship{
+package MainGame;
+
+import MainGame.Ship;
+
+public class ShipSubmarine extends Ship {
     public ShipSubmarine (){
         super(3);
     }

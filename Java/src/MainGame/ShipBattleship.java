@@ -1,4 +1,6 @@
-public class ShipBattleship extends Ship{
+package MainGame;
+
+public class ShipBattleship extends Ship {
     public ShipBattleship(){
         super(4);
     }

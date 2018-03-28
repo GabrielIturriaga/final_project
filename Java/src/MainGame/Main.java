@@ -14,9 +14,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        ShipBattleship battleShip = new ShipBattleship();
+        ShipDestroyer DestroyerShip = new ShipDestroyer();
+        ShipCarrier CarrierShip = new ShipCarrier();
+        ShipCruiser CruiserShip = new ShipCruiser();
+        ShipSubmarine SubmarineShip = new ShipSubmarine();
         int width = 640;
         int height = 480;
-        int THIS_IS_THE_LENGTH_OF_THE_SHIP = 3; //CHANGE THIS TO CHANGE THE SIZE, OBVIOUSLY
+        int THIS_IS_THE_LENGTH_OF_THE_SHIP = CarrierShip.getLength();
         GridPane grid = new GridPane();
         grid.setHgap(1);
         grid.setVgap(1);

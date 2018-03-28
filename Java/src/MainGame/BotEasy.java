@@ -1,3 +1,8 @@
+package MainGame;
+
+import MainGame.Grid;
+import MainGame.Point;
+
 import java.util.ArrayList;
 import java.util.Random;
 

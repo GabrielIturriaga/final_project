@@ -1,3 +1,5 @@
+package MainGame;
+
 public class Point {
 
 	private int x;

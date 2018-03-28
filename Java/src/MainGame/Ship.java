@@ -1,10 +1,12 @@
+package MainGame;
+
 public abstract class Ship{
     // Attributes
 
     private int length;
     private int HP;
     private Point point ;
-    private Point [] points ;
+    private Point[] points ;
     //bring in things for the ship
     public Ship(int length){
         // Assign to the attribute
@@ -39,9 +41,9 @@ public abstract class Ship{
             points[i] = point;
         }
     }
-    // Just Prints out the Coors for the Ship
+    // Just Prints out the Coors for the MainGame.Ship
     public String PointsToString(){
-        String pointArray = "Point:";
+        String pointArray = "MainGame.Point:";
         for(int i = 0; i < points.length; i++){
 
             pointArray += " (" + getShipX() + ", " + getShipY() + ") ";
