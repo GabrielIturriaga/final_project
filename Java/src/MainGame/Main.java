@@ -7,6 +7,7 @@ import javafx.scene.shape.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.input.*;
+import java.util.ArrayList;
 
 
 public class Main extends Application {
@@ -19,6 +20,13 @@ public class Main extends Application {
         ShipCarrier CarrierShip = new ShipCarrier();
         ShipCruiser CruiserShip = new ShipCruiser();
         ShipSubmarine SubmarineShip = new ShipSubmarine();
+        ArrayList<Ship> ShipList = new ArrayList<Ship>();
+        ShipList.add(battleShip);
+        ShipList.add(DestroyerShip);
+        ShipList.add(CarrierShip);
+        ShipList.add(CruiserShip);
+        ShipList.add(CarrierShip);
+        ShipList.add(SubmarineShip);
         int width = 640;
         int height = 480;
         int THIS_IS_THE_LENGTH_OF_THE_SHIP = CarrierShip.getLength();
@@ -58,6 +66,9 @@ public class Main extends Application {
                 int tempCellX = cursor.getCellX();
                 int tempCellY = cursor.getCellY();
                 cursor.cursorToMouse(grid, tempCellX, tempCellY);
+            }
+            if (key.equals(KeyCode.DOWN)){
+                //THIS_IS_THE_LENGTH_OF_THE_SHIP = battleShip.getLength();
             }
         });
         primaryStage.setTitle("Hello World");
