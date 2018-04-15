@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cee7304b-bf22-4ae0-909b-67d404506146" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/src/MainGame/Cursor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/MainGame/Cursor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/src/MainGame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/MainGame/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,7 +23,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GridContents.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GridContents.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Java/src/MainGame/GridContents.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -41,8 +35,25 @@
       <file leaf-file-name="Cursor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Cursor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="44" />
+            <state relative-caret-position="262">
+              <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+              <folding>
+                <element signature="e#2849#2850#0" expanded="true" />
+                <element signature="e#2893#2894#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1054">
+              <caret line="71" column="12" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="12" />
+              <folding>
+                <element signature="e#2823#2824#0" expanded="true" />
+                <element signature="e#2851#2852#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,15 +63,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -367,7 +369,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523829705480</updated>
-      <workItem from="1523829708142" duration="4460000" />
+      <workItem from="1523829708142" duration="4735000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1523831420628</created>
@@ -376,11 +378,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523831420628</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Rotation broken please help. Added secondary grid to scene.">
+      <created>1523834414760</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1523834414761</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4460000" />
+    <option name="totallyTimeSpent" value="4735000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="260" y="20" width="1400" height="1000" extended-state="0" />
@@ -396,11 +405,11 @@
       <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" weight="0.3299435" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.20338982" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.20338982" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17268786" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17268786" />
       <window_info anchor="right" id="Database" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -453,7 +462,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Rotation broken please help. Added secondary grid to scene." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rotation broken please help. Added secondary grid to scene." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Java/src/MainGame/Cursor.java</url>
+          <line>71</line>
+          <properties class="MainGame.Cursor" method="changeRotation">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="9" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Java/final_project.iml">
@@ -484,13 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="90" column="40" lean-forward="true" selection-start-line="90" selection-start-column="40" selection-end-line="90" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Java/src/MainGame/CursorRect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -500,8 +518,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Cursor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="44" />
+        <state relative-caret-position="262">
+          <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+          <folding>
+            <element signature="e#2849#2850#0" expanded="true" />
+            <element signature="e#2893#2894#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -509,6 +531,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="71" column="12" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="12" />
+          <folding>
+            <element signature="e#2823#2824#0" expanded="true" />
+            <element signature="e#2851#2852#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

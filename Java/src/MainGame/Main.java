@@ -80,7 +80,7 @@ public class Main extends Application {
 
         } );
 
-        grid.setOnKeyPressed(e ->{
+        scene.setOnKeyPressed(e ->{
             KeyCode key = e.getCode();
             if (key.equals(KeyCode.R)){
                 cursor.changeRotation();
