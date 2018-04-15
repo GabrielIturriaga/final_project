@@ -2,12 +2,11 @@ package MainGame;
 import java.util.ArrayList;
 public abstract class Ship{
     // Attributes
-
     private int length;
     private int HP;
     private String name;
     //private Point point ;
-    private ArrayList <Point> points ;
+    private ArrayList <Point> points;
     //bring in things for the ship
     public Ship(int length, String name){
         // Assign to the attribute
@@ -43,15 +42,17 @@ public abstract class Ship{
     //public void setShipY(int y) {point.setY(y);}
 
     public ArrayList getPoints () {return points;}
+
     // Adds the points of the ship to an arraylist
     public void addPoints(Point p, String direction, Grid grid){
         for(int i = 0; i < getLength(); i++) {
             if (direction.equals("H")) {
+
                 // Adds the points to the array based on the direction put in.
-                Point nPoint = new Point(p.getX() + i, p.getY());
-                points.add(nPoint);
+                Point newPoint = new Point(p.getX() + i, p.getY());
+                points.add(newPoint);
                 // Adds to the grid
-                grid.addsToGrid(nPoint);
+                grid.addsToGrid(newPoint);
             }
             else {
                 Point nPoint = new Point(p.getX(), p.getY() + i);
