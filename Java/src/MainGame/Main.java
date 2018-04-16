@@ -16,6 +16,7 @@ public class Main extends Application {
 
 
     @Override
+    @SuppressWarnings("Duplicates")
     public void start(Stage primaryStage) throws Exception{
         ShipBattleship battleShip = new ShipBattleship();
         ShipDestroyer destroyerShip = new ShipDestroyer();
@@ -53,6 +54,7 @@ public class Main extends Application {
 //            }
 //        }
         Cursor cursor = new Cursor(THIS_IS_THE_LENGTH_OF_THE_SHIP);
+        Cursor cursor2 = new Cursor(1);
 
         GridPane grid2 = new GridPane();
         grid2.setHgap(1);
@@ -74,11 +76,23 @@ public class Main extends Application {
             double my = e.getY();
             int mCellX = (int)mx/33;
             int mCellY = (int)my/33;
-            if (mCellX < grid.getMaxWidth() && mCellY < grid.getMaxHeight()){
+            if (inGrid(grid,mCellX,mCellY)){
                 cursor.cursorToMouse(grid, mCellX, mCellY);
             }
 
         } );
+
+        grid2.setOnMousePressed(e -> {
+            double mX = e.getX();
+            double mY = e.getY();
+            int mCellX = (int)mX/33;
+            int mCellY = (int)mY/33;
+
+            if(inGrid(grid2,mCellX,mCellY)){
+                cursor2.cursorToMouse(grid2,mCellX,mCellY);
+            }
+
+        });
 
         scene.setOnKeyPressed(e ->{
             KeyCode key = e.getCode();
@@ -99,9 +113,10 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
 
-
-
+    public boolean inGrid(GridPane g,int x,int y){
+        return x < g.getMaxWidth() && y < g.getMaxHeight();
     }
 
     public void createGrid(GridPane g){

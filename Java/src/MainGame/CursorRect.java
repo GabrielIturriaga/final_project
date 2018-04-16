@@ -6,7 +6,7 @@ public class CursorRect extends Rectangle {
     public CursorRect(){
         this.setWidth(32);
         this.setHeight(32);
-        this.setFill(Color.DARKRED);
+        this.setFill(Color.MEDIUMSEAGREEN);
         this.setStroke(Color.BLACK);
     }
 }
