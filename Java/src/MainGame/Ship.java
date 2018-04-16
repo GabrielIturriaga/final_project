@@ -52,12 +52,12 @@ public abstract class Ship{
                 Point newPoint = new Point(p.getX() + i, p.getY());
                 points.add(newPoint);
                 // Adds to the grid
-                grid.addsToGrid(newPoint);
+                grid.addToGrid(newPoint);
             }
             else {
                 Point nPoint = new Point(p.getX(), p.getY() + i);
                 points.add(nPoint);
-                grid.addsToGrid(nPoint);
+                grid.addToGrid(nPoint);
             }
         }
     }

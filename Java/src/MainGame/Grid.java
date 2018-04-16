@@ -1,14 +1,14 @@
 package MainGame;
 
+import java.util.ArrayList;
+
 public class Grid {
     private GridContents[][] grid = new GridContents[10][10];
-    private Point point;
-    private GridContents go;
     public Grid(){
-        makingGrid();
+        makeGrid();
     }
     // This adds MainGame.Point objects right now
-    public void makingGrid(){
+    public void makeGrid(){
         for(int i=0;i<grid.length;i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 grid[j][i] = new GridContents(new Point(j, i));
@@ -16,7 +16,7 @@ public class Grid {
         }
     }
     // This "adds" the ship point to the GridContents
-    public void addsToGrid(Point p){
+    public void addToGrid(Point p){
         for(int i=0;i<grid.length;i++) {
             for(int j=0;j<grid[i].length;j++) {
                 if(p.getY() == (grid[i][j].getPoint().getY()) && p.getX() == (grid[i][j].getPoint().getX()))
@@ -24,7 +24,9 @@ public class Grid {
             }
         }
     }
-
+    public GridContents getGridContents(int x, int y){
+        return grid[x][y];
+    }
     public void printGrid(){
         for(int i=0;i<grid.length;i++) {
             for(int j=0;j<grid[i].length;j++)

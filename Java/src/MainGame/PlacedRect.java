@@ -2,11 +2,11 @@ package MainGame;
 import javafx.scene.shape.*;
 import javafx.scene.paint.Color;
 
-public class CursorRect extends Rectangle {
-    public CursorRect(){
+public class PlacedRect extends Rectangle {
+    public PlacedRect(){
         this.setWidth(32);
         this.setHeight(32);
-        this.setFill(Color.LIGHTSEAGREEN);
+        this.setFill(Color.LIGHTSTEELBLUE);
         this.setStroke(Color.BLACK);
     }
 }

@@ -3,7 +3,7 @@ package MainGame;
 public class GridContents {
     private Point point;
     private boolean containsShip;
-    private String ship; // store which ship occupies the the point in the grid
+    private Ship ship; // store which this point belongs to
 
     public GridContents(Point p){
         point = p;
@@ -18,8 +18,8 @@ public class GridContents {
         return containsShip;
     }
 
-    public void setShip(String ship){ this.ship = ship; }
-    public String getShip(){ return this.ship; }
+    public void setShip(Ship ship){ this.ship = ship; }
+    public Ship getShip(){ return this.ship; }
 
     public void setContainsShip(boolean containsShip) {
         this.containsShip = containsShip;

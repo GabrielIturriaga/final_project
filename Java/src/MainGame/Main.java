@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.input.*;
 import java.util.ArrayList;
-
+import java.util.Stack;
 
 public class Main extends Application {
 
@@ -20,17 +20,18 @@ public class Main extends Application {
         ShipCarrier CarrierShip = new ShipCarrier();
         ShipCruiser CruiserShip = new ShipCruiser();
         ShipSubmarine SubmarineShip = new ShipSubmarine();
-        ArrayList<Ship> ShipList = new ArrayList<Ship>();
-        ShipList.add(battleShip);
-        ShipList.add(DestroyerShip);
-        ShipList.add(CarrierShip);
-        ShipList.add(CruiserShip);
-        ShipList.add(CarrierShip);
-        ShipList.add(SubmarineShip);
+        Stack<Ship> shipStack = new Stack<>();
+        shipStack.push(battleShip);
+        shipStack.push(DestroyerShip);
+        shipStack.push(CarrierShip);
+        shipStack.push(CruiserShip);
+        shipStack.push(CarrierShip);
+        shipStack.push(SubmarineShip);
         int width = 640;
         int height = 480;
-        int THIS_IS_THE_LENGTH_OF_THE_SHIP = CarrierShip.getLength();
+        int shipLength = shipStack.get(0).getLength();
         GridPane grid = new GridPane();
+        Grid player1Grid = new Grid();
         grid.setHgap(1);
         grid.setVgap(1);
         grid.setMaxWidth(10);
@@ -45,7 +46,7 @@ public class Main extends Application {
                 grid.add(r, i, j);
             }
         }
-        Cursor cursor = new Cursor(THIS_IS_THE_LENGTH_OF_THE_SHIP);
+        Cursor cursor = new Cursor(shipLength);
         Scene scene = new Scene(grid, width,height);
         scene.setOnMouseMoved(e -> {
             double mx = e.getX();
@@ -57,6 +58,17 @@ public class Main extends Application {
             }
 
         } );
+        scene.setOnMousePressed(e -> {
+            if (shipStack.size() > 1 && cursor.checkForShip(player1Grid)){
+                Ship currentShip = shipStack.peek();
+                cursor.placeShip(grid, player1Grid, currentShip);
+
+                //Removing the placed ship from stack, setting new cursor length
+                shipStack.pop();
+                int newLength = shipStack.peek().getLength();
+                cursor.setCellLength(newLength);
+            }
+        });
         scene.setOnKeyPressed(e ->{
             KeyCode key = e.getCode();
             if (key.equals(KeyCode.R)){

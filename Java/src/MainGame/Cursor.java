@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Cursor{
     private int cellX, cellY, cellLength;
     private ArrayList<CursorRect> rectList = new ArrayList<CursorRect>();
+    private ArrayList<PlacedRect> placedRectList = new ArrayList<PlacedRect>();//storage for the placed rects
     private boolean isHorizontal;
 
     public Cursor(int cellLength){
         for (int i = 0; i < cellLength; i ++){
-            rectList.add(new CursorRect()); //RECTANGLES REPRESENTING THE CURSOR
+            placedRectList.add(new PlacedRect());
         }
-        this.cellX = cellX; //cellX IS THE MIDDLE CELL'S X COORD
-        this.cellY = cellY; //cellY IS THE MIDDLE CELL'S Y COORD
         this.cellLength = cellLength; // TOTAL AMOUNT OF CELLS (SHIP SIZE)
+        generateCursorRects(); //creating rectangles for placement preview
         this.isHorizontal = false;
     }
 
@@ -67,7 +67,57 @@ public class Cursor{
                 }
             }
         }
+    }
+    //GridPane is javafx visuals, gameGrid is the backend grid for the game
+    public void placeShip(GridPane grid, Grid gameGrid, Ship currentShip){
+        for (int i = 0; i < cellLength; i++){
+            grid.getChildren().remove(rectList.get(i));
+            if (isHorizontal == true) {
+                grid.add(placedRectList.get(i), i + (cellX - cellLength / 2), cellY);
+                GridContents gridData = gameGrid.getGridContents(i + (cellX - cellLength / 2), cellY);
+                gridData.setContainsShip(true);
+                gridData.setShip(currentShip);
+            }
+            if (isHorizontal == false) {
+                grid.add(placedRectList.get(i), cellX, i + (cellY - cellLength / 2));
+                GridContents gridData = gameGrid.getGridContents(cellX, i + (cellY - cellLength / 2));
+                gridData.setContainsShip(true);
+                gridData.setShip(currentShip);
+            }
+        }
+    }
 
+    //used to update the preview rectangles for cursor
+    public void generateCursorRects(){
+        rectList = new ArrayList<>();
+        for (int i = 0; i < cellLength; i ++){
+            rectList.add(new CursorRect()); //RECTANGLES REPRESENTING THE CURSOR
+        }
+    }
+    //updates the list of placedrect objects, call this if ship length changes
+    public void generatePlacedRects(){
+        placedRectList = new ArrayList<>();
+        for (int i = 0; i < cellLength; i ++){
+            placedRectList.add(new PlacedRect());
+        }
+    }
+    public boolean checkForShip(Grid gameGrid){
+        boolean canPlace = true;
+        for (int i = 0; i < cellLength; i++){
+            if (isHorizontal == true) {
+                GridContents gridData = gameGrid.getGridContents(i + (cellX - cellLength / 2),cellY);
+                if (gridData.getcontainsShip()){
+                    canPlace = false;
+                }
+            }
+            if (isHorizontal == false) {
+                GridContents gridData = gameGrid.getGridContents(cellX, i + (cellY - cellLength / 2));
+                if (gridData.getcontainsShip()){
+                    canPlace = false;
+                }
+            }
+        }
+        return canPlace;
     }
     public void changeRotation(){
         isHorizontal = !isHorizontal;
@@ -85,5 +135,12 @@ public class Cursor{
 
     public int getCellY() {
         return cellY;
+    }
+
+    //updating cell length, used when changing ships
+    public void setCellLength(int cellLength) {
+        this.cellLength = cellLength;
+        generateCursorRects();
+        generatePlacedRects();
     }
 }
