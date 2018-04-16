@@ -3,7 +3,11 @@ package MainGame;
 public class GridContents {
     private Point point;
     private boolean containsShip;
+<<<<<<< HEAD
     private Ship ship; // store which this point belongs to
+=======
+    private Ship ship; // store which ship occupies the the point in the grid
+>>>>>>> ffee895838c0e75994a300a936950d67c418cf47
 
     public GridContents(Point p){
         point = p;

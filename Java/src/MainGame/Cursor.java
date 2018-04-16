@@ -18,7 +18,7 @@ public class Cursor{
     }
 
     //moves cursor (selected ship) around as the mouse moves on the grid
-    public void cursorToMouse(GridPane grid, int mCellX, int mCellY){
+    public void cursorToMouse(GridPane grid,int mCellX,int mCellY){
 
         /** temporary workaround for small brain limitations
          * this garbage will be fixed eventually. Fixes
