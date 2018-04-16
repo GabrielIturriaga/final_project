@@ -24,24 +24,29 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        //create ships
         ShipBattleship battleShip = new ShipBattleship();
-        ShipDestroyer DestroyerShip = new ShipDestroyer();
-        ShipCarrier CarrierShip = new ShipCarrier();
-        ShipCruiser CruiserShip = new ShipCruiser();
-        ShipSubmarine SubmarineShip = new ShipSubmarine();
+        ShipDestroyer destroyerShip = new ShipDestroyer();
+        ShipCarrier carrierShip = new ShipCarrier();
+        ShipCruiser cruiserShip = new ShipCruiser();
+        ShipSubmarine submarineShip = new ShipSubmarine();
 
+        //add ships to stack
         Stack<Ship> shipStack = new Stack<>();
-
         shipStack.push(battleShip);
-        shipStack.push(DestroyerShip);
-        shipStack.push(CarrierShip);
-        shipStack.push(CruiserShip);
-        shipStack.push(CarrierShip);
-        shipStack.push(SubmarineShip);
+        shipStack.push(destroyerShip);
+        shipStack.push(carrierShip);
+        shipStack.push(cruiserShip);
+        shipStack.push(submarineShip);
 
+        int shipLength = shipStack.get(0).getLength();
+
+        //size of window
         int width = 720;
         int height = 480;
-        int shipLength = shipStack.get(0).getLength();
+
+        Cursor cursor = new Cursor(shipLength);
+        Cursor cursor2 = new Cursor(1);
 
         GridPane grid = new GridPane();
         Grid player1Grid = new Grid();
@@ -50,8 +55,6 @@ public class Main extends Application {
         grid.setMaxWidth(10);
         grid.setMaxHeight(10);
 
-        Cursor cursor = new Cursor(shipLength);
-        Cursor cursor2 = new Cursor(1);
         GridPane grid2 = new GridPane();
         grid2.setHgap(1);
         grid2.setVgap(1);
@@ -61,9 +64,9 @@ public class Main extends Application {
         createGrid(grid);
         createGrid(grid2);
 
-        //font for text in game
-        Font font = new Font("Arial",20);
-        font.font("Arial",FontWeight.BOLD,20);
+        //font for text in-game
+        Font font;
+        font = Font.font("Arial",FontWeight.BOLD,25);
 
         Text text1 = new Text(textTop);
         text1.setFont(font);
@@ -132,7 +135,7 @@ public class Main extends Application {
 
         grid2.setOnMousePressed(e -> {
             double mX = e.getX();
-            double mY = e.getY();;
+            double mY = e.getY();
             int mCellX = (int)mX/33;
             int mCellY = (int)mY/33;
 
@@ -150,9 +153,6 @@ public class Main extends Application {
                 int tempCellX = cursor.getCellX();
                 int tempCellY = cursor.getCellY();
                 cursor.cursorToMouse(grid, tempCellX, tempCellY);
-            }
-            if (key.equals(KeyCode.DOWN)){
-                //THIS_IS_THE_LENGTH_OF_THE_SHIP = battleShip.getLength();
             }
         });
 
