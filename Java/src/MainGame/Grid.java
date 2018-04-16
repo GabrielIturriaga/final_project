@@ -1,9 +1,9 @@
 package MainGame;
 
+import java.util.ArrayList;
+
 public class Grid {
     private GridContents[][] grid = new GridContents[10][10];
-    private Point point;
-    private GridContents go;
     public Grid(){
         makeGrid();
     }
@@ -24,7 +24,9 @@ public class Grid {
             }
         }
     }
-
+    public GridContents getGridContents(int x, int y){
+        return grid[x][y];
+    }
     public void printGrid(){
         for(int i=0;i<grid.length;i++) {
             for(int j=0;j<grid[i].length;j++)

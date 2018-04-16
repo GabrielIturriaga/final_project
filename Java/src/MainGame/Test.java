@@ -9,21 +9,21 @@ public class Test {
         Grid grid = new Grid();
 
         // Creates the ships
-        ShipBattleship battleShip = new ShipBattleship();
-        ShipDestroyer destroyerShip = new ShipDestroyer();
-        ShipCarrier carrierShip = new ShipCarrier();
-        ShipCruiser cruiserShip = new ShipCruiser();
-        ShipSubmarine submarineShip = new ShipSubmarine();
+        ShipBattleship BattleShip = new ShipBattleship();
+        ShipDestroyer DestroyerShip = new ShipDestroyer();
+        ShipCarrier CarrierShip = new ShipCarrier();
+        ShipCruiser CruiserShip = new ShipCruiser();
+        ShipSubmarine SubmarineShip = new ShipSubmarine();
 
         ArrayList<Ship> ShipList = new ArrayList<>();
 
         // Adds the ships to an array
-        ShipList.add(battleShip);
-        ShipList.add(destroyerShip);
-        ShipList.add(carrierShip);
-        ShipList.add(cruiserShip);
-        ShipList.add(carrierShip);
-        ShipList.add(submarineShip);
+        ShipList.add(BattleShip);
+        ShipList.add(DestroyerShip);
+        ShipList.add(CarrierShip);
+        ShipList.add(CruiserShip);
+        ShipList.add(CarrierShip);
+        ShipList.add(SubmarineShip);
         //System.out.println(ShipList);
 
         System.out.println();
