@@ -26,6 +26,7 @@ public class Main extends Application {
     private static String textBot = "bot";
 	private static boolean shipsPlaced = false; // should be by default false
 	private static boolean playerTurn = true;
+	private static boolean difficulty = true;
 	private static Grid player1Grid = new Grid();
 	private static Grid player2Grid = new Grid();
 	private static Grid computerGrid = new Grid();
@@ -125,7 +126,9 @@ public class Main extends Application {
         //anchorPane.setPrefSize(width,height);
         Scene scene = new Scene(anchorPane,width,height);
 
-        Button button1 = new Button("Play");
+        Button button1 = new Button("EASY");
+
+        Button button2 = new Button("HARD");
 
         button1.setTranslateX(360);
         button1.setTranslateY(240);
@@ -135,7 +138,8 @@ public class Main extends Application {
         Scene scene1 = new Scene(root1, 720, 480, Color.LIGHTBLUE);
 
 
-        root1.getChildren().addAll(button1);
+
+        root1.getChildren().addAll(button1, button2);
 
         Scene startScene ;
         grid.setOnMouseMoved(e -> {
@@ -174,6 +178,13 @@ public class Main extends Application {
         button1.setOnAction(e -> {
             primaryStage.setScene(scene);
             primaryStage.show();
+            difficulty = true;
+        });
+
+        button2.setOnAction(e -> {
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            difficulty = false;
         });
         // back button even to go back to the main menu
         backButton.setOnAction(e -> {
