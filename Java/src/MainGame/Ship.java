@@ -22,7 +22,7 @@ public abstract class Ship{
 
     public String getName() {return name;}
 
-    public void setHP(int HP){this.HP = HP;}
+    public void lowerHP(){this.HP -= 1;}
 
     // Getters
     // Will change the void to whatever the return value is supposed to be

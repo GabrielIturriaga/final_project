@@ -129,10 +129,12 @@ public class BotEasy {
 				if (rotation == 0) {
 					GridContents gridData = gameGrid.getGridContents(xFromCenter ,y);
 					gridData.setContainsShip(true);
+					gridData.setShip(currentShip);
 				}
 				if (rotation == 1) {
 					GridContents gridData = gameGrid.getGridContents(x, yFromCenter);
 					gridData.setContainsShip(true);
+					gridData.setShip(currentShip);
 				}
 			}
 		}

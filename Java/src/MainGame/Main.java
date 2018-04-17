@@ -1,8 +1,6 @@
 package MainGame;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,12 +15,11 @@ import javafx.scene.shape.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.input.*;
-import java.util.ArrayList;
+
 import java.util.Stack;
-import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
-    private static String textTop = "top";
+    private static String textTop = "Place your ships in the left hand grid.";
     private static String textBot = "bot";
 	private static boolean shipsPlaced = false; // should be by default false
 	private static boolean playerTurn = true;
@@ -178,6 +175,7 @@ public class Main extends Application {
             }
 
             if(shipStack.size() == 0){
+        	    text1.setText("");
         	    shipsPlaced = true;
         	    cursor.setCellLength(0);
             }
@@ -222,8 +220,11 @@ public class Main extends Application {
             }
 
             player2Grid.getGridContents(mCellX,mCellY).hit();
+            if(player2Grid.getGridContents(mCellX,mCellY).getContainsShip()){
+                player2Grid.getGridContents(mCellX,mCellY).getShip().lowerHP();
+            }
 
-            colorGrid(grid2,player2Grid);
+            colorGrid(grid2,player2Grid,true);
 
             playerTurn = false;
             computerGuess(player1Grid,grid);
@@ -254,7 +255,13 @@ public class Main extends Application {
         Point p;
         p = bot.getGuess();
         g.getGridContents(p.getX(),p.getY()).hit();
-        colorGrid(vGrid,g);
+        if(g.getGridContents(p.getX(),p.getY()).getContainsShip()){
+            g.getGridContents(p.getX(),p.getY()).getShip().lowerHP();
+            if(g.getGridContents(p.getX(),p.getY()).getShip().getHP() == 0){
+
+            }
+        }
+        colorGrid(vGrid,g,true);
         playerTurn = true;
     }
 
@@ -276,7 +283,7 @@ public class Main extends Application {
     }
 
     //needs to be changed to check contents of grid
-    public static void colorGrid(GridPane vGrid,Grid g){
+    public static void colorGrid(GridPane vGrid,Grid g,boolean b){
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++){
 				Rectangle r = new Rectangle();
@@ -290,7 +297,7 @@ public class Main extends Application {
                         r.setFill(Color.WHITE);
                     }
                 }
-				else if(g.getGridContents(i,j).getContainsShip()){
+				else if(g.getGridContents(i,j).getContainsShip() && b){
                     r.setFill(Color.STEELBLUE);
                 }
 				else {
