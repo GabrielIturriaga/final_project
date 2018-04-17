@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fee2817c-5244-4222-b892-b0f792d062f7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Java/src/MainGame/BotEasy.java" afterPath="$PROJECT_DIR$/Java/src/MainGame/BotEasy.java" />
-      <change beforePath="$PROJECT_DIR$/Java/src/MainGame/Main.java" afterPath="$PROJECT_DIR$/Java/src/MainGame/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -144,7 +141,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
+    <option name="x" value="1489" />
     <option name="width" value="1522" />
     <option name="height" value="1931" />
   </component>
@@ -523,7 +520,7 @@
       <workItem from="1523826500325" duration="982000" />
       <workItem from="1523881948018" duration="3866000" />
       <workItem from="1523967873051" duration="3949000" />
-      <workItem from="1523976542454" duration="10132000" />
+      <workItem from="1523976542454" duration="10174000" />
     </task>
     <task id="LOCAL-00001" summary="Empty base project.">
       <created>1521821156632</created>
@@ -567,11 +564,18 @@
       <option name="project" value="LOCAL" />
       <updated>1523884533614</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created text headers and footers, added all nodes to anchor pane.">
+      <created>1523996616572</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1523996616572</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31867000" />
+    <option name="totallyTimeSpent" value="31909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="3026" height="1946" extended-state="6" />
