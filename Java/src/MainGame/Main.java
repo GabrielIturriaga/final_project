@@ -15,43 +15,52 @@ import javafx.scene.paint.Color;
 import javafx.scene.input.*;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
-    private String textTop = "top";
-    private String textBot = "bot";
+    private static String textTop = "top";
+    private static String textBot = "bot";
+	private static boolean shipsPlaced = false; // should be by default false
+	private static boolean playerTurn = true;
+	private static Grid player1Grid = new Grid();
+	private static Grid computerGrid = new Grid();
 
+	//needed to change to static to access from main method
+	private static GridPane grid;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage){
 
+        //create ships
         ShipBattleship battleShip = new ShipBattleship();
-        ShipDestroyer DestroyerShip = new ShipDestroyer();
-        ShipCarrier CarrierShip = new ShipCarrier();
-        ShipCruiser CruiserShip = new ShipCruiser();
-        ShipSubmarine SubmarineShip = new ShipSubmarine();
+        ShipDestroyer destroyerShip = new ShipDestroyer();
+        ShipCarrier carrierShip = new ShipCarrier();
+        ShipCruiser cruiserShip = new ShipCruiser();
+        ShipSubmarine submarineShip = new ShipSubmarine();
 
+        //add ships to stack
         Stack<Ship> shipStack = new Stack<>();
-
         shipStack.push(battleShip);
-        shipStack.push(DestroyerShip);
-        shipStack.push(CarrierShip);
-        shipStack.push(CruiserShip);
-        shipStack.push(CarrierShip);
-        shipStack.push(SubmarineShip);
+        shipStack.push(destroyerShip);
+        shipStack.push(carrierShip);
+        shipStack.push(cruiserShip);
+        shipStack.push(submarineShip);
 
-        int width = 720;
-        int height = 480;
         int shipLength = shipStack.get(0).getLength();
 
-        GridPane grid = new GridPane();
-        Grid player1Grid = new Grid();
+        //size of window
+        int width = 720;
+        int height = 480;
+
+        Cursor cursor = new Cursor(shipLength);
+        Cursor cursor2 = new Cursor(1);
+
+        grid = new GridPane();
         grid.setHgap(1);
         grid.setVgap(1);
         grid.setMaxWidth(10);
         grid.setMaxHeight(10);
 
-        Cursor cursor = new Cursor(shipLength);
-        Cursor cursor2 = new Cursor(1);
         GridPane grid2 = new GridPane();
         grid2.setHgap(1);
         grid2.setVgap(1);
@@ -61,9 +70,9 @@ public class Main extends Application {
         createGrid(grid);
         createGrid(grid2);
 
-        //font for text in game
-        Font font = new Font("Arial",20);
-        font.font("Arial",FontWeight.BOLD,20);
+        //font for text in-game
+        Font font;
+        font = Font.font("Arial",FontWeight.BOLD,25);
 
         Text text1 = new Text(textTop);
         text1.setFont(font);
@@ -72,13 +81,13 @@ public class Main extends Application {
         text2.setFont(font);
 
         //hbox top and bot contain game text
-        HBox hboxTop = new HBox();
-        hboxTop.getChildren().add(text1);
-        hboxTop.setAlignment(Pos.CENTER);
+        HBox hBoxTop = new HBox();
+        hBoxTop.getChildren().add(text1);
+        hBoxTop.setAlignment(Pos.CENTER);
 
-        HBox hboxBot = new HBox();
-        hboxBot.getChildren().add(text2);
-        hboxBot.setAlignment(Pos.CENTER);
+        HBox hBoxBot = new HBox();
+        hBoxBot.getChildren().add(text2);
+        hBoxBot.setAlignment(Pos.CENTER);
 
         //contains two grid objects
         HBox hbox = new HBox();
@@ -88,25 +97,29 @@ public class Main extends Application {
 
         //create anchor pane and set anchors
         AnchorPane anchorPane = new AnchorPane();
-        AnchorPane.setTopAnchor(hboxTop,20.0);
-        AnchorPane.setLeftAnchor(hboxTop,10.0);
-        AnchorPane.setRightAnchor(hboxTop,10.0);
+        AnchorPane.setTopAnchor(hBoxTop,20.0);
+        AnchorPane.setLeftAnchor(hBoxTop,10.0);
+        AnchorPane.setRightAnchor(hBoxTop,10.0);
 
         AnchorPane.setLeftAnchor(hbox,10.0);
         AnchorPane.setRightAnchor(hbox,10.0);
         AnchorPane.setTopAnchor(hbox,250.0);
 
         AnchorPane.setBottomAnchor(hbox,250.0);
-        AnchorPane.setBottomAnchor(hboxBot,20.0);
-        AnchorPane.setLeftAnchor(hboxBot,10.0);
-        AnchorPane.setRightAnchor(hboxBot,10.0);
+        AnchorPane.setBottomAnchor(hBoxBot,20.0);
+        AnchorPane.setLeftAnchor(hBoxBot,10.0);
+        AnchorPane.setRightAnchor(hBoxBot,10.0);
 
         //add hboxes to anchor pane
-        anchorPane.getChildren().addAll(hboxTop,hbox,hboxBot);
+        anchorPane.getChildren().addAll(hBoxTop,hbox,hBoxBot);
         //anchorPane.setPrefSize(width,height);
         Scene scene = new Scene(anchorPane,width,height);
 
         grid.setOnMouseMoved(e -> {
+			//doesn't allow interaction with second grid when ships are placed
+        	if(shipsPlaced){
+        		return;
+			}
             double mx = e.getX();
             double my = e.getY();
             int mCellX = (int)mx/33;
@@ -119,6 +132,10 @@ public class Main extends Application {
         } );
 
         grid.setOnMousePressed(e -> {
+        	//doesn't allow interaction with second grid when ships are placed
+        	if(shipsPlaced){
+        		return;
+			}
             if (shipStack.size() > 1 && cursor.checkForShip(player1Grid)){
                 Ship currentShip = shipStack.peek();
                 cursor.placeShip(grid, player1Grid, currentShip);
@@ -131,28 +148,34 @@ public class Main extends Application {
         });
 
         grid2.setOnMousePressed(e -> {
+        	//if not the players turn it doesn't allow interaction
+        	if(!playerTurn){
+        		return;
+			}
             double mX = e.getX();
-            double mY = e.getY();;
+            double mY = e.getY();
             int mCellX = (int)mX/33;
             int mCellY = (int)mY/33;
 
             if(inGrid(grid2,mCellX,mCellY)){
                 cursor2.cursorToMouse(grid2,mCellX,mCellY);
             }
+
+            playerTurn = false;
         });
 
         scene.setOnKeyPressed(e ->{
             KeyCode key = e.getCode();
             if (key.equals(KeyCode.R)){
+            	if(shipsPlaced){
+            		return;
+				}
                 cursor.changeRotation();
                 //get the (x,y) cells and put them back into the cursorToMouse function to update rotation instantly
                 //...absolute hack, I am so sorry
                 int tempCellX = cursor.getCellX();
                 int tempCellY = cursor.getCellY();
                 cursor.cursorToMouse(grid, tempCellX, tempCellY);
-            }
-            if (key.equals(KeyCode.DOWN)){
-                //THIS_IS_THE_LENGTH_OF_THE_SHIP = battleShip.getLength();
             }
         });
 
@@ -164,7 +187,6 @@ public class Main extends Application {
     public boolean inGrid(GridPane g,int x,int y){
         return x < g.getMaxWidth() && y < g.getMaxHeight();
     }
-
 
     public void createGrid(GridPane g){
         for (int i = 0; i < 10; i++) {
@@ -178,7 +200,46 @@ public class Main extends Application {
             }
         }
     }
+
+    //needs to be changed to check contents of grid
+    public static void colorGrid(GridPane g,Point p){
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++){
+				Rectangle r = new Rectangle();
+				r.setHeight(32);
+				r.setWidth(32);
+				if(i == p.getX() && j == p.getY()){
+					r.setFill(Color.LIGHTSTEELBLUE);
+				}
+				else {
+					r.setFill(Color.IVORY);
+				}
+				r.setStroke(Color.BLACK);
+				g.add(r, i, j);
+			}
+		}
+	}
+
     public static void main(String[] args) {
         launch(args);
+
+        BotEasy computer = new BotEasy();
+        Point guess;
+        boolean result;
+
+        //this possibly will work
+//        while(true){
+//        	if(!playerTurn){
+//        		guess = computer.getGuess();
+//        		//check location on grid
+//				result = computerGrid.check(guess);
+//
+//				if(result){
+//					computerGrid.getGridContents(guess.getX(),guess.getY()).hit();
+//				}
+//
+//				colorGrid(grid,guess);
+//			}
+//		}
     }
 }

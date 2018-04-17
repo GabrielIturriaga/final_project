@@ -104,15 +104,15 @@ public class Cursor{
     public boolean checkForShip(Grid gameGrid){
         boolean canPlace = true;
         for (int i = 0; i < cellLength; i++){
-            if (isHorizontal == true) {
+            if (isHorizontal) {
                 GridContents gridData = gameGrid.getGridContents(i + (cellX - cellLength / 2),cellY);
-                if (gridData.getcontainsShip()){
+                if (gridData.getContainsShip()){
                     canPlace = false;
                 }
             }
-            if (isHorizontal == false) {
+            if (!isHorizontal) {
                 GridContents gridData = gameGrid.getGridContents(cellX, i + (cellY - cellLength / 2));
-                if (gridData.getcontainsShip()){
+                if (gridData.getContainsShip()){
                     canPlace = false;
                 }
             }
