@@ -12,7 +12,6 @@ public class FirstBot{
    private ArrayList<Point> hit;
    private int hitradius = 1;
    private int counter = 0;
-   private boolean boatisony = false;
    private boolean attack = false;
    private Grid grid = new Grid();
    private Point temp;
@@ -128,7 +127,6 @@ public class FirstBot{
             else{
                guesses.add(guess);
             }
-            
          }
          else if(guesses.size() % 2 == 0){
             for(x = rand.nextInt(11); x < 5; x = rand.nextInt(11)){

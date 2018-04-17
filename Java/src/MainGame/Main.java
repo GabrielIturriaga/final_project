@@ -131,7 +131,9 @@ public class Main extends Application {
         button1.setTranslateY(240);
 
         Group root1 = new Group();
+
         Scene scene1 = new Scene(root1, 720, 480, Color.LIGHTBLUE);
+
 
         root1.getChildren().addAll(button1);
 

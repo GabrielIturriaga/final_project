@@ -26,6 +26,10 @@ public class Grid {
         }
     }
 
+    public boolean getGridContains(int x, int y){
+        return grid[x][y].getContainsShip();
+    }
+
     public GridContents getGridContents(int x, int y){
         return grid[x][y];
     }
