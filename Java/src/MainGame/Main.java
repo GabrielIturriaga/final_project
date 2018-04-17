@@ -167,10 +167,16 @@ public class Main extends Application {
             }
         });
         // back button even to go back to the main menu
-
+        backButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                start(primaryStage);
+            }
+        });
+        // Button that goes to the normal game
         button1.setOnAction(e -> primaryStage.setScene(scene));
 
-        backButton.setOnAction(e -> primaryStage.setScene(scene));
+        //backButton.setOnAction(e -> primaryStage.setScene(scene));
 
         grid2.setOnMousePressed(e -> {
         	//if not the players turn it doesn't allow interaction
