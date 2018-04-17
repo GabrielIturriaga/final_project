@@ -27,6 +27,7 @@ public class Main extends Application {
 	private static boolean shipsPlaced = false; // should be by default false
 	private static boolean playerTurn = true;
 	private static Grid player1Grid = new Grid();
+	private static Grid player2Grid = new Grid();
 	private static Grid computerGrid = new Grid();
 
 	//needed to change to static to access from main method
@@ -261,6 +262,7 @@ public class Main extends Application {
         Application.launch(args);
 
         BotEasy computer = new BotEasy();
+        computer.generateShips(player2Grid);
         Point guess;
         boolean result;
 
