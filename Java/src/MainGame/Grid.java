@@ -33,7 +33,7 @@ public class Grid {
     public void printGrid(){
         for(int i=0;i<grid.length;i++) {
             for(int j=0;j<grid[i].length;j++)
-                System.out.print(grid[j][i].toString() + "\t");
+                System.out.printf("%-30s", grid[i][j].toString());
             System.out.println();
         }
     }

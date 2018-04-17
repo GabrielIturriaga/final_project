@@ -76,12 +76,13 @@ public class BotEasy {
 			while(placingShip){
 				int shipLength = currentShip.getLength();
 
-				int shipX = rand1.nextInt(11);
-				int shipY = rand2.nextInt(11);
+				int shipX = rand1.nextInt(10);
+				int shipY = rand2.nextInt(10);
 				int rotation = rand3.nextInt(2); //0 = horizontal, 1 = vertical
 
 				if (canPlaceShip(gameGrid, shipLength, shipX, shipY, rotation, currentShip)){
 					placingShip = false;
+					currentShip = shipStack.pop();
 				}
 
 			}
@@ -90,33 +91,52 @@ public class BotEasy {
 
 	public boolean canPlaceShip(Grid gameGrid, int shipLength, int x, int y, int rotation, Ship currentShip){
 		boolean canPlace = true;
-		boolean nowContainsShips = false;
-		//checks every tile for a possible ship
 		for (int i = 0; i < shipLength; i++){
+
+			int xFromCenter = i + (x - shipLength / 2);
+			int yFromCenter = i + (y - shipLength / 2);
+
 			if (rotation == 0) {
-				GridContents gridData = gameGrid.getGridContents(i + (x - shipLength / 2),y);
-				if (gridData.getContainsShip()){
+				if (xFromCenter < 0 || xFromCenter > 9){
 					canPlace = false;
 				}
+				else {
+					GridContents gridData = gameGrid.getGridContents(xFromCenter, y);
+					if (gridData.getContainsShip()) {
+						canPlace = false;
+					}
+				}
 			}
+
 			if (rotation == 1) {
-				GridContents gridData = gameGrid.getGridContents(x, i + (y - shipLength / 2));
-				if (gridData.getContainsShip()){
+				if (yFromCenter < 0 || yFromCenter > 9){
 					canPlace = false;
+				}
+				else {
+					GridContents gridData = gameGrid.getGridContents(x, i + (y - shipLength / 2));
+					if (gridData.getContainsShip()) {
+						canPlace = false;
+					}
 				}
 			}
 		}
 		//only change tiles to contain a ship, if none of them had a former ship
-		for (int i = 0; i < shipLength; i++){
-			if (rotation == 0) {
-				GridContents gridData = gameGrid.getGridContents(i + (x - shipLength / 2),y);
-				gridData.setContainsShip(true);
-			}
-			if (rotation == 1) {
-				GridContents gridData = gameGrid.getGridContents(x, i + (y - shipLength / 2));
-				gridData.setContainsShip(true);
+		if (canPlace == true){
+			for (int i = 0; i < shipLength; i++){
+				int xFromCenter = i + (x - shipLength / 2);
+				int yFromCenter = i + (y - shipLength / 2);
+
+				if (rotation == 0) {
+					GridContents gridData = gameGrid.getGridContents(xFromCenter ,y);
+					gridData.setContainsShip(true);
+				}
+				if (rotation == 1) {
+					GridContents gridData = gameGrid.getGridContents(x, yFromCenter);
+					gridData.setContainsShip(true);
+				}
 			}
 		}
+
 		return canPlace;
 	}
 }
