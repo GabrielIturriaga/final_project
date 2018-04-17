@@ -28,6 +28,7 @@ public class GridContents {
 
     //changes hit status to true
     public void hit(){ this.hit = true; }
+    public boolean isHit(){ return this.hit; }
 
     public String toString(){
         return ("(" + point.getX() + ", " + point.getY() + ") " + containsShip + "\t");

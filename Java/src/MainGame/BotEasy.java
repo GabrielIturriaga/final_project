@@ -24,8 +24,8 @@ public class BotEasy {
 		Random random = new Random();
 
 		do {
-			x = random.nextInt(11);
-			y = random.nextInt(11);
+			x = random.nextInt(10);
+			y = random.nextInt(10);
 		}while(!newGuess(x,y));
 
 		guessPoint = new Point(x,y);

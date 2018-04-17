@@ -31,6 +31,8 @@ public class Main extends Application {
 	private static Grid player2Grid = new Grid();
 	private static Grid computerGrid = new Grid();
 
+    public BotEasy bot = new BotEasy();
+
 	//needed to change to static to access from main method
 	private static GridPane grid;
 
@@ -163,14 +165,21 @@ public class Main extends Application {
         	if(shipsPlaced){
         		return;
 			}
-            if (shipStack.size() > 1 && cursor.checkForShip(player1Grid)){
+            if (shipStack.size() > 0 && cursor.checkForShip(player1Grid) && !shipsPlaced){
                 Ship currentShip = shipStack.peek();
                 cursor.placeShip(grid, player1Grid, currentShip);
 
-                //Removing the placed ship from stack, setting new cursor length
-                shipStack.pop();
-                int newLength = shipStack.peek().getLength();
-                cursor.setCellLength(newLength);
+
+                    //Removing the placed ship from stack, setting new cursor length
+                    //shipStack.pop();
+                    int newLength = shipStack.pop().getLength();
+                    cursor.setCellLength(newLength);
+
+            }
+
+            if(shipStack.size() == 0){
+        	    shipsPlaced = true;
+        	    cursor.setCellLength(0);
             }
         });
 
@@ -212,7 +221,10 @@ public class Main extends Application {
                 cursor2.cursorToMouse(grid2,mCellX,mCellY);
             }
 
+            colorGrid(grid2,player2Grid);
+
             playerTurn = false;
+            computerGuess(player1Grid,grid);
         });
 
         scene.setOnKeyPressed(e ->{
@@ -235,6 +247,15 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    private void computerGuess(Grid g,GridPane vGrid){
+        //time delay
+        Point p;
+        p = bot.getGuess();
+        g.getGridContents(p.getX(),p.getY()).hit();
+        colorGrid(vGrid,g);
+        playerTurn = true;
+    }
+
     public boolean inGrid(GridPane g,int x,int y){
         return x < g.getMaxWidth() && y < g.getMaxHeight();
     }
@@ -245,7 +266,7 @@ public class Main extends Application {
                 Rectangle r = new Rectangle();
                 r.setHeight(32);
                 r.setWidth(32);
-                r.setFill(Color.IVORY);
+                r.setFill(Color.LIGHTBLUE);
                 r.setStroke(Color.BLACK);
                 g.add(r, i, j);
             }
@@ -253,20 +274,28 @@ public class Main extends Application {
     }
 
     //needs to be changed to check contents of grid
-    public static void colorGrid(GridPane g,Point p){
+    public static void colorGrid(GridPane vGrid,Grid g){
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++){
 				Rectangle r = new Rectangle();
 				r.setHeight(32);
 				r.setWidth(32);
-				if(i == p.getX() && j == p.getY()){
-					r.setFill(Color.LIGHTSTEELBLUE);
-				}
+                if(g.getGridContents(i,j).isHit()){
+                    if(g.getGridContents(i,j).getContainsShip()){
+                        r.setFill(Color.RED);
+                    }
+                    else {
+                        r.setFill(Color.WHITE);
+                    }
+                }
+				else if(g.getGridContents(i,j).getContainsShip()){
+                    r.setFill(Color.STEELBLUE);
+                }
 				else {
-					r.setFill(Color.IVORY);
+					r.setFill(Color.LIGHTBLUE);
 				}
 				r.setStroke(Color.BLACK);
-				g.add(r, i, j);
+				vGrid.add(r, i, j);
 			}
 		}
 	}
