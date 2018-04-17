@@ -166,17 +166,23 @@ public class Main extends Application {
                 cursor.setCellLength(newLength);
             }
         });
-        // back button even to go back to the main menu
-        backButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                start(primaryStage);
-            }
-        });
-        // Button that goes to the normal game
-        button1.setOnAction(e -> primaryStage.setScene(scene));
 
-        //backButton.setOnAction(e -> primaryStage.setScene(scene));
+        // Button that goes to the normal game
+        button1.setOnAction(e -> {
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        });
+        // back button even to go back to the main menu
+        backButton.setOnAction(e -> {
+            start(primaryStage);
+            for(int i=0;i<10;i++) {
+                for(int j=0;j<10;j++) {
+                    player1Grid.getGridContents(j, i).setContainsShip(false);
+                }
+            }
+            shipsPlaced = false; // should be by default false
+            playerTurn = true;
+        });
 
         grid2.setOnMousePressed(e -> {
         	//if not the players turn it doesn't allow interaction
