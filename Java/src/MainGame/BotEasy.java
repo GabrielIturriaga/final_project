@@ -95,13 +95,13 @@ public class BotEasy {
 		for (int i = 0; i < shipLength; i++){
 			if (rotation == 0) {
 				GridContents gridData = gameGrid.getGridContents(i + (x - shipLength / 2),y);
-				if (gridData.getcontainsShip()){
+				if (gridData.getContainsShip()){
 					canPlace = false;
 				}
 			}
 			if (rotation == 1) {
 				GridContents gridData = gameGrid.getGridContents(x, i + (y - shipLength / 2));
-				if (gridData.getcontainsShip()){
+				if (gridData.getContainsShip()){
 					canPlace = false;
 				}
 			}

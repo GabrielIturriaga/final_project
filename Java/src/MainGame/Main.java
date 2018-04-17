@@ -1,8 +1,12 @@
 package MainGame;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -85,6 +89,11 @@ public class Main extends Application {
         hBoxTop.getChildren().add(text1);
         hBoxTop.setAlignment(Pos.CENTER);
 
+        Group wholeScreen = new Group();
+        Button backButton = new Button("Go Back");
+        wholeScreen.getChildren().addAll(backButton);
+
+
         HBox hBoxBot = new HBox();
         hBoxBot.getChildren().add(text2);
         hBoxBot.setAlignment(Pos.CENTER);
@@ -111,10 +120,21 @@ public class Main extends Application {
         AnchorPane.setRightAnchor(hBoxBot,10.0);
 
         //add hboxes to anchor pane
-        anchorPane.getChildren().addAll(hBoxTop,hbox,hBoxBot);
+        anchorPane.getChildren().addAll(hBoxTop,hbox,hBoxBot, wholeScreen);
         //anchorPane.setPrefSize(width,height);
         Scene scene = new Scene(anchorPane,width,height);
 
+        Button button1 = new Button("Play");
+
+        button1.setTranslateX(360);
+        button1.setTranslateY(240);
+
+        Group root1 = new Group();
+        Scene scene1 = new Scene(root1, 720, 480, Color.LIGHTBLUE);
+
+        root1.getChildren().addAll(button1);
+
+        Scene startScene ;
         grid.setOnMouseMoved(e -> {
 			//doesn't allow interaction with second grid when ships are placed
         	if(shipsPlaced){
@@ -146,6 +166,11 @@ public class Main extends Application {
                 cursor.setCellLength(newLength);
             }
         });
+        // back button even to go back to the main menu
+
+        button1.setOnAction(e -> primaryStage.setScene(scene));
+
+        backButton.setOnAction(e -> primaryStage.setScene(scene));
 
         grid2.setOnMousePressed(e -> {
         	//if not the players turn it doesn't allow interaction
@@ -180,7 +205,7 @@ public class Main extends Application {
         });
 
         primaryStage.setTitle("BattleShip");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(scene1);
         primaryStage.show();
     }
 
@@ -221,7 +246,7 @@ public class Main extends Application {
 	}
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
 
         BotEasy computer = new BotEasy();
         Point guess;
