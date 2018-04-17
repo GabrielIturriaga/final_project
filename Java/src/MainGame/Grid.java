@@ -15,6 +15,7 @@ public class Grid {
             }
         }
     }
+
     // This "adds" the ship point to the GridContents
     public void addToGrid(Point p){
         for(int i=0;i<grid.length;i++) {
@@ -24,9 +25,11 @@ public class Grid {
             }
         }
     }
+
     public GridContents getGridContents(int x, int y){
         return grid[x][y];
     }
+
     public void printGrid(){
         for(int i=0;i<grid.length;i++) {
             for(int j=0;j<grid[i].length;j++)
@@ -34,4 +37,9 @@ public class Grid {
             System.out.println();
         }
     }
+
+    //checks if ship is in point
+    public boolean check(Point p){
+    	return getGridContents(p.getX(),p.getY()).getContainsShip();
+	}
 }
