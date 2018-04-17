@@ -221,6 +221,8 @@ public class Main extends Application {
                 cursor2.cursorToMouse(grid2,mCellX,mCellY);
             }
 
+            player2Grid.getGridContents(mCellX,mCellY).hit();
+
             colorGrid(grid2,player2Grid);
 
             playerTurn = false;
@@ -301,10 +303,14 @@ public class Main extends Application {
 	}
 
     public static void main(String[] args) {
-        Application.launch(args);
-
         BotEasy computer = new BotEasy();
         computer.generateShips(player2Grid);
+        player2Grid.printGrid();
+
+        Application.launch(args);
+
+
+
         Point guess;
         boolean result;
 
