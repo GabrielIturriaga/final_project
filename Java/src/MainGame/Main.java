@@ -32,11 +32,15 @@ public class Main extends Application {
 	private static boolean difficulty = true;
 	private static Grid player1Grid = new Grid();
 	private static Grid player2Grid = new Grid();
+    //used for the player's cursor
+    private static Ship currentShip;
+    private static int currentLength;
     //amount of ships player 1 has sunk
     private static int player1SunkShips = 0;
     //amount of ships the computer has sunk
 	private static int computerSunkShips = 0;
-
+	//winner, 0 = no winner, 1 = player, 2 = computer
+    private static int winner = 0;
     public BotEasy bot = new BotEasy();
 
 
@@ -58,13 +62,13 @@ public class Main extends Application {
         shipStack.push(cruiserShip);
         shipStack.push(submarineShip);
 
-        int shipLength = shipStack.get(0).getLength();
-
+        currentShip = shipStack.peek();
+        currentLength = currentShip.getLength();
         //size of window
         int width = 720;
         int height = 480;
 
-        Cursor cursor = new Cursor(shipLength);
+        Cursor cursor = new Cursor(currentLength);
         Cursor cursor2 = new Cursor(1);
 
         GridPane grid = new GridPane();
@@ -176,16 +180,16 @@ public class Main extends Application {
         	if(shipsPlaced){
         		return;
 			}
-            if (shipStack.size() > 0 && cursor.checkForShip(player1Grid) && !shipsPlaced){
-                Ship currentShip = shipStack.peek();
+            if (!shipStack.isEmpty() && cursor.checkForShip(player1Grid) && !shipsPlaced){
+        	    currentShip = shipStack.pop();
                 cursor.placeShip(grid, player1Grid, currentShip);
 
-
+                if (shipStack.size() > 0){
+                    int newLength = shipStack.peek().getLength();
+                    cursor.setCellLength(newLength);
                     //Removing the placed ship from stack, setting new cursor length
                     //shipStack.pop();
-                    int newLength = shipStack.pop().getLength();
-                    cursor.setCellLength(newLength);
-
+                }
             }
 
             if(shipStack.size() == 0){
@@ -203,6 +207,11 @@ public class Main extends Application {
 
             //if not the players turn it doesn't allow interaction
             if(!playerTurn){
+                return;
+            }
+
+            //only run if there is no winner
+            if (winner != 0){
                 return;
             }
 
@@ -236,10 +245,14 @@ public class Main extends Application {
                 shipGuessed.lowerHP();
                 if (shipGuessed.getHP() == 0){
                     textTop = "You have sunk their " + shipGuessed.getName() +"!";
+                    player1SunkShips += 1;
+                    if (player1SunkShips >= 5){
+                        winner = 1;
+                        textTop = "Congratulations! You have won!";
+                    }
                 }
                 else{
                     textTop = "Well done!";
-                    player1SunkShips += 1;
                 }
             }
 
@@ -291,6 +304,7 @@ public class Main extends Application {
             playerTurn = true;
         });
 
+
         primaryStage.setTitle("BattleShip");
         primaryStage.setScene(scene1);
         primaryStage.show();
@@ -310,6 +324,10 @@ public class Main extends Application {
             if (guessedShip.getHP() == 0){
                 textTop = "You have lost your " + guessedShip.getName() + "!";
                 computerSunkShips +=1;
+                if (computerSunkShips >= 5){
+                    winner = 2;
+                    textTop = "The computer has won! :(";
+                }
             }
             else{
                 textTop = "You've been hit! Fight back!";
