@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -132,18 +133,48 @@ public class Main extends Application {
         //anchorPane.setPrefSize(width,height);
         Scene scene = new Scene(anchorPane,width,height);
 
-        Button button1 = new Button("EASY");
+        Font font1;
+        font1 = Font.font("Verdana",FontWeight.BOLD,45);
 
-        Button button2 = new Button("HARD");
+        Text text3 = new Text("HARD");
 
-        button1.setTranslateX(360);
-        button1.setTranslateY(240);
+        Text text4 = new Text("EASY");
+        text4.setFont(font);
+        Text text5 = new Text("BATTLESHIP");
+        text5.setFont(font1);
+        Text text6 = new Text("CHOOSE DIFFICULTY");
 
-        Group root1 = new Group();
 
-        Scene scene1 = new Scene(root1, 720, 480, Color.LIGHTBLUE);
+        text6.setFont(font);
 
-        root1.getChildren().addAll(button1, button2);
+        GridPane pane = new GridPane();
+        pane.setPadding(new Insets(20,20,20,20));
+        pane.setHgap(50);
+        pane.setVgap(50);
+        pane.setStyle("-fx-background-color: LIGHTBLUE");
+        pane.setAlignment(Pos.CENTER);
+
+        Button button1 = new Button(text3.getText());
+
+        button1.setPrefWidth(120);
+        button1.setPrefHeight(100);
+        button1.setStyle("");
+
+        Button button2 = new Button(text4.getText());
+
+
+
+        button2.setPrefWidth(120);
+        button2.setPrefHeight(100);
+        button1.setStyle("");
+
+
+        pane.add(button1, 2, 1);
+        pane.add(button2, 0, 1);
+        pane.add(text6, 1, 1);
+        pane.add(text5, 1, 0);
+
+        Scene scene1 = new Scene(pane, 720, 480);
 
 
         //updates game messages every 0.5 seconds
