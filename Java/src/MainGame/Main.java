@@ -32,6 +32,10 @@ public class Main extends Application {
 	private static boolean difficulty = true;
 	private static Grid player1Grid = new Grid();
 	private static Grid player2Grid = new Grid();
+    //amount of ships player 1 has sunk
+    private static int player1SunkShips = 0;
+    //amount of ships the computer has sunk
+	private static int computerSunkShips = 0;
 
     public BotEasy bot = new BotEasy();
 
@@ -230,8 +234,15 @@ public class Main extends Application {
 
             //lowers hp if ship is in guess location
             if(player2Grid.getGridContents(mCellX,mCellY).getContainsShip()){
-                player2Grid.getGridContents(mCellX,mCellY).getShip().lowerHP();
-                textTop = "Well done!";
+                Ship shipGuessed = player2Grid.getGridContents(mCellX,mCellY).getShip();
+                shipGuessed.lowerHP();
+                if (shipGuessed.getHP() == 0){
+                    textTop = "You have sunk their " + shipGuessed.getName() +"!";
+                }
+                else{
+                    textTop = "Well done!";
+                    player1SunkShips += 1;
+                }
             }
 
 
@@ -296,8 +307,15 @@ public class Main extends Application {
         p = bot.getGuess();
         g.getGridContents(p.getX(),p.getY()).hit();
         if(g.getGridContents(p.getX(),p.getY()).getContainsShip()){
-            textTop = "You've been hit! Fight back!";
-            g.getGridContents(p.getX(),p.getY()).getShip().lowerHP();
+            Ship guessedShip = g.getGridContents(p.getX(), p.getY()).getShip();
+            guessedShip.lowerHP();
+            if (guessedShip.getHP() == 0){
+                textTop = "You have lost your " + guessedShip.getName() + "!";
+                computerSunkShips +=1;
+            }
+            else{
+                textTop = "You've been hit! Fight back!";
+            }
         }
         colorGrid(vGrid,g,true);
         playerTurn = true;

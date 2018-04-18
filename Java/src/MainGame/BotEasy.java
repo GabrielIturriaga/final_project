@@ -48,6 +48,7 @@ public class BotEasy {
 		//assuming no overlap
 	}
 
+	//generates a new set of ships randomly onto a backend-grid
 	public void generateShips(Grid gameGrid){
 		Stack<Ship> shipStack = new Stack();
 
@@ -63,15 +64,14 @@ public class BotEasy {
 		shipStack.push(cruShip);
 		shipStack.push(subShip);
 
-		int stackSize = shipStack.size();
-
 		Random rand1 = new Random();
 		Random rand2 = new Random();
 		Random rand3 = new Random();
 
-		Ship currentShip = shipStack.peek();
+		Ship currentShip;
 
-		for (int i = 0; i < stackSize; i++){
+		while(!shipStack.empty()){
+            currentShip = shipStack.pop();
 			boolean placingShip = true;
 			while(placingShip){
 				int shipLength = currentShip.getLength();
@@ -82,13 +82,13 @@ public class BotEasy {
 
 				if (canPlaceShip(gameGrid, shipLength, shipX, shipY, rotation, currentShip)){
 					placingShip = false;
-					currentShip = shipStack.pop();
 				}
 
 			}
 		}
 	}
 
+	//checks if a ship is allowed to be there
 	public boolean canPlaceShip(Grid gameGrid, int shipLength, int x, int y, int rotation, Ship currentShip){
 		boolean canPlace = true;
 		for (int i = 0; i < shipLength; i++){
@@ -130,11 +130,13 @@ public class BotEasy {
 					GridContents gridData = gameGrid.getGridContents(xFromCenter ,y);
 					gridData.setContainsShip(true);
 					gridData.setShip(currentShip);
+					System.out.println(currentShip.toString());
 				}
 				if (rotation == 1) {
 					GridContents gridData = gameGrid.getGridContents(x, yFromCenter);
 					gridData.setContainsShip(true);
 					gridData.setShip(currentShip);
+                    System.out.println(currentShip.toString());
 				}
 			}
 		}

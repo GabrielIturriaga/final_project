@@ -4,7 +4,7 @@ import MainGame.Ship;
 
 public class ShipDestroyer extends Ship {
     public ShipDestroyer(){
-        super(2, "Destroyer");
+        super(2, "destroyer");
     }
     public String toString (){
         return (super.toString());

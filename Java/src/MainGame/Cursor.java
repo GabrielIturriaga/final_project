@@ -20,9 +20,7 @@ public class Cursor{
     //moves cursor (selected ship) around as the mouse moves on the grid
     public void cursorToMouse(GridPane grid, int mCellX, int mCellY){
 
-        /** temporary workaround for small brain limitations
-         * this garbage will be fixed eventually. Fixes
-         odd and even ship lengths working differently.*/
+        //fixes difference between even/odd ship lengths
         int extra;
         if (cellLength % 2 == 0){ extra = 1; } else {extra = 0;}
 
@@ -101,6 +99,8 @@ public class Cursor{
             placedRectList.add(new PlacedRect());
         }
     }
+
+    //checks for a ship
     public boolean checkForShip(Grid gameGrid){
         boolean canPlace = true;
         for (int i = 0; i < cellLength; i++){
@@ -122,9 +122,11 @@ public class Cursor{
     public void changeRotation(){
         isHorizontal = !isHorizontal;
     }
+
     public int getNewMaxCell(int newCell){
         return newCell + cellLength/2;
     }
+
     public int getNewMinCell(int newCell){
         return newCell - cellLength/2;
     }

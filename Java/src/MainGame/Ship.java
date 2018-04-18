@@ -72,6 +72,6 @@ public abstract class Ship{
     }*/
     // Just Prints out the length and the HP
     public String toString (){
-        return ("Length: " + getLength() + " HP: " + getHP());
+        return ("Length: " + getLength() + " HP: " + getHP() + "Name: " + getName());
     }
 }
