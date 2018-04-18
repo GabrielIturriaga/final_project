@@ -38,7 +38,9 @@ public class Main extends Application {
     //amount of ships the computer has sunk
 	private static int computerSunkShips = 0;
 
-    public BotEasy bot = new BotEasy();
+    public FirstBot bot1 = new FirstBot();
+
+    public BotEasy bot2 = new BotEasy();
 
 
     @Override
@@ -162,12 +164,9 @@ public class Main extends Application {
 
         Button button2 = new Button(text4.getText());
 
-
-
         button2.setPrefWidth(120);
         button2.setPrefHeight(100);
         button1.setStyle("");
-
 
         pane.add(button1, 2, 1);
         pane.add(button2, 0, 1);
@@ -328,12 +327,14 @@ public class Main extends Application {
     }
 
     private void computerGuess(Grid g,GridPane vGrid) {
-        //time delay?
-//        textTop = "thinking....";
-//
-//        textTop = "";
+        //gets point
         Point p;
-        p = bot.getGuess();
+        if(difficulty){
+            p = bot1.getGuess();
+        }
+        else {
+            p = bot2.getGuess();
+        }
         g.getGridContents(p.getX(),p.getY()).hit();
         if(g.getGridContents(p.getX(),p.getY()).getContainsShip()){
             Ship guessedShip = g.getGridContents(p.getX(), p.getY()).getShip();
