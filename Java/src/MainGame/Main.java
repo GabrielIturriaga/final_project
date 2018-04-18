@@ -32,12 +32,11 @@ public class Main extends Application {
 	private static boolean difficulty = true;
 	private static Grid player1Grid = new Grid();
 	private static Grid player2Grid = new Grid();
-	private static Grid computerGrid = new Grid();
 
     public BotEasy bot = new BotEasy();
 
 	//needed to change to static to access from main method
-	private static GridPane grid;
+	private  GridPane grid;
 
     @Override
     public void start(Stage primaryStage){
@@ -66,7 +65,7 @@ public class Main extends Application {
         Cursor cursor = new Cursor(shipLength);
         Cursor cursor2 = new Cursor(1);
 
-        grid = new GridPane();
+        GridPane grid = new GridPane();
         grid.setHgap(1);
         grid.setVgap(1);
         grid.setMaxWidth(10);
@@ -144,15 +143,14 @@ public class Main extends Application {
 
         root1.getChildren().addAll(button1, button2);
 
-        Scene startScene ;
 
-
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+        //updates game messages every 0.5 seconds
+        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
             text1.setText(textTop);
             text2.setText(textBot);
         }));
-        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-        fiveSecondsWonder.play();
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
 
 
         grid.setOnMouseMoved(e -> {
@@ -197,6 +195,9 @@ public class Main extends Application {
 
         //on click of right hand grid
         grid2.setOnMousePressed(e -> {
+            if(!shipsPlaced){
+                return;
+            }
 
             //if not the players turn it doesn't allow interaction
             if(!playerTurn){
@@ -288,9 +289,9 @@ public class Main extends Application {
 
     private void computerGuess(Grid g,GridPane vGrid) {
         //time delay?
-        textTop = "thinking....";
-
-        textTop = "";
+//        textTop = "thinking....";
+//
+//        textTop = "";
         Point p;
         p = bot.getGuess();
         g.getGridContents(p.getX(),p.getY()).hit();
