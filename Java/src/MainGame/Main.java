@@ -421,7 +421,7 @@ public class Main extends Application {
                         r.setFill(Color.RED);
                     }
                     else {
-                        r.setFill(Color.WHITE);
+                        r.setFill(Color.YELLOW);
                     }
                 }
 				else if(g.getGridContents(i,j).getContainsShip() && b){
