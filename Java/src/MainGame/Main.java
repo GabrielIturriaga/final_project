@@ -44,7 +44,7 @@ public class Main extends Application {
     private static int winner = 0;
     public BotEasy bot = new BotEasy();
 
-    public FirstBot bot1 = new FirstBot();
+    public BotHard bot1 = new BotHard();
 
     public BotEasy bot2 = new BotEasy();
 
@@ -355,17 +355,18 @@ public class Main extends Application {
 
     private void computerGuess(Grid g,GridPane vGrid) {
         //gets point
-        Point p;
+        Point p = new Point(12,12);
         if(difficulty){
             p = bot1.getGuess();
         }
-        else {
+        else if (!difficulty){
             p = bot2.getGuess();
         }
         g.getGridContents(p.getX(),p.getY()).hit();
         if(g.getGridContents(p.getX(),p.getY()).getContainsShip()){
             Ship guessedShip = g.getGridContents(p.getX(), p.getY()).getShip();
             guessedShip.lowerHP();
+            bot1.setLastHit(true);
             if (guessedShip.getHP() == 0){
                 textTop = "You have lost your " + guessedShip.getName() + "!";
                 computerSunkShips +=1;
@@ -378,6 +379,9 @@ public class Main extends Application {
                 textTop = "You've been hit! Fight back!";
             }
         }
+        if(!g.getGridContents(p.getX(),p.getY()).getContainsShip()){
+			bot1.setLastHit(false);
+		}
         colorGrid(vGrid,g,true);
         playerTurn = true;
     }
