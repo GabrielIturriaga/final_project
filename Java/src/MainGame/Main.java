@@ -134,13 +134,13 @@ public class Main extends Application {
         Scene scene = new Scene(anchorPane,width,height);
 
         Font font1;
-        font1 = Font.font("Verdana",FontWeight.BOLD,45);
+        font1 = Font.font("Verdana",FontWeight.BOLD,35);
 
         Text text3 = new Text("HARD");
 
         Text text4 = new Text("EASY");
         text4.setFont(font);
-        Text text5 = new Text("BATTLESHIP");
+        Text text5 = new Text(" BATTLESHIP");
         text5.setFont(font1);
         Text text6 = new Text("CHOOSE DIFFICULTY");
 
