@@ -325,17 +325,35 @@ public class Main extends Application {
             difficulty = false;
         });
         // back button even to go back to the main menu
+//        backButton.setOnAction(e -> {
+//            start(primaryStage);
+//            for(int i=0;i<10;i++) {
+//                for(int j=0;j<10;j++) {
+//                    player1Grid.getGridContents(j, i).setContainsShip(false);
+//                }
+//            }
+//            shipsPlaced = false; // should be by default false
+//            playerTurn = true;
+//        });
         backButton.setOnAction(e -> {
-            start(primaryStage);
-            for(int i=0;i<10;i++) {
-                for(int j=0;j<10;j++) {
-                    player1Grid.getGridContents(j, i).setContainsShip(false);
-                }
-            }
-            shipsPlaced = false; // should be by default false
-            playerTurn = true;
+                    start(primaryStage);
+                    for (int i = 0; i < 10; i++) {
+                        for (int j = 0; j < 10; j++) {
+                            player1Grid.getGridContents(j, i).setContainsShip(false);
+                        }
+                    }
+                    shipsPlaced = false; // should be by default false
+                    playerTurn = true;
+                    player1Grid = new Grid();
+                    player2Grid = new Grid();
+                    winner = 0;
+                    player1SunkShips = 0;
+                    computerSunkShips = 0;
+                    text1.setText("Place your ships in the left hand grid.");
+                    text2.setText("");
+                    BotEasy computer = new BotEasy();
+                    computer.generateShips(player2Grid);
         });
-
 
         primaryStage.setTitle("BattleShip");
         primaryStage.setScene(scene1);

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13a489cb-50bf-4a58-b37d-1e41dced59e8" name="Default" comment="">
+    <list default="true" id="f3a4eb75-cee1-49a2-acbf-96f2d20fee97" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/final_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Java/final_project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java/src/MainGame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/MainGame/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,11 +22,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="332" column="20" selection-start-line="332" selection-start-column="20" selection-end-line="332" selection-end-column="20" />
+            <state relative-caret-position="321">
+              <caret line="337" column="8" selection-start-line="337" selection-start-column="8" selection-end-line="337" selection-end-column="8" />
               <folding>
-                <element signature="e#11079#11080#0" expanded="true" />
-                <element signature="e#11145#11146#0" expanded="true" />
+                <element signature="e#11891#11892#0" expanded="true" />
+                <element signature="e#11957#11958#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,7 +66,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -86,8 +91,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -173,25 +176,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="13a489cb-50bf-4a58-b37d-1e41dced59e8" name="Default" comment="" />
-      <created>1524019560886</created>
+      <changelist id="f3a4eb75-cee1-49a2-acbf-96f2d20fee97" name="Default" comment="" />
+      <created>1524022219664</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1524019560886</updated>
-      <workItem from="1524019563284" duration="1653000" />
+      <updated>1524022219664</updated>
+      <workItem from="1524022222457" duration="637000" />
     </task>
-    <task id="LOCAL-00001" summary="UI changes.">
-      <created>1524019844645</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1524019844645</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1653000" />
+    <option name="totallyTimeSpent" value="637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="260" y="20" width="1400" height="1000" extended-state="0" />
@@ -207,11 +202,11 @@
       <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32946634" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32946634" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16492537" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="right" id="Database" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -233,18 +228,14 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="UI changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="UI changes." />
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Java/src/MainGame/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="332" column="20" selection-start-line="332" selection-start-column="20" selection-end-line="332" selection-end-column="20" />
+        <state relative-caret-position="321">
+          <caret line="337" column="8" selection-start-line="337" selection-start-column="8" selection-end-line="337" selection-end-column="8" />
           <folding>
-            <element signature="e#11079#11080#0" expanded="true" />
-            <element signature="e#11145#11146#0" expanded="true" />
+            <element signature="e#11891#11892#0" expanded="true" />
+            <element signature="e#11957#11958#0" expanded="true" />
           </folding>
         </state>
       </provider>
