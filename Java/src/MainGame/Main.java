@@ -35,8 +35,6 @@ public class Main extends Application {
 
     public BotEasy bot = new BotEasy();
 
-	//needed to change to static to access from main method
-	private  GridPane grid;
 
     @Override
     public void start(Stage primaryStage){
