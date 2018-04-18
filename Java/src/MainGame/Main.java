@@ -155,6 +155,7 @@ public class Main extends Application {
 
         text6.setFont(font);
 
+        // This pane is part of the Main menu
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(20,20,20,20));
         pane.setHgap(50);
@@ -174,11 +175,13 @@ public class Main extends Application {
         button2.setPrefHeight(100);
         button1.setStyle("");
 
+        // Adds to the Pane
         pane.add(button1, 2, 1);
         pane.add(button2, 0, 1);
         pane.add(text6, 1, 1);
         pane.add(text5, 1, 0);
 
+        // this is the Main menu scene
         Scene scene1 = new Scene(pane, 720, 480);
 
 
@@ -318,23 +321,13 @@ public class Main extends Application {
             primaryStage.show();
             difficulty = true;
         });
-
+        // Runs the harder AI game
         button2.setOnAction(e -> {
             primaryStage.setScene(scene);
             primaryStage.show();
             difficulty = false;
         });
-        // back button even to go back to the main menu
-//        backButton.setOnAction(e -> {
-//            start(primaryStage);
-//            for(int i=0;i<10;i++) {
-//                for(int j=0;j<10;j++) {
-//                    player1Grid.getGridContents(j, i).setContainsShip(false);
-//                }
-//            }
-//            shipsPlaced = false; // should be by default false
-//            playerTurn = true;
-//        });
+        //  This button goes back to the main menu and resets and the value used in the game.
         backButton.setOnAction(e -> {
                     start(primaryStage);
                     for (int i = 0; i < 10; i++) {
