@@ -1,6 +1,10 @@
 package MainGame;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,12 +19,14 @@ import javafx.scene.shape.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.input.*;
+import javafx.util.Duration;
 
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
     private static String textTop = "Place your ships in the left hand grid.";
-    private static String textBot = "bot";
+    private static String textBot = "";
 	private static boolean shipsPlaced = false; // should be by default false
 	private static boolean playerTurn = true;
 	private static boolean difficulty = true;
@@ -136,11 +142,19 @@ public class Main extends Application {
 
         Scene scene1 = new Scene(root1, 720, 480, Color.LIGHTBLUE);
 
-
-
         root1.getChildren().addAll(button1, button2);
 
         Scene startScene ;
+
+
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
+            text1.setText(textTop);
+            text2.setText(textBot);
+        }));
+        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+        fiveSecondsWonder.play();
+
+
         grid.setOnMouseMoved(e -> {
 			//doesn't allow interaction with second grid when ships are placed
         	if(shipsPlaced){
@@ -175,9 +189,71 @@ public class Main extends Application {
             }
 
             if(shipStack.size() == 0){
-        	    text1.setText("");
+        	    textTop = "";
         	    shipsPlaced = true;
         	    cursor.setCellLength(0);
+            }
+        });
+
+        //on click of right hand grid
+        grid2.setOnMousePressed(e -> {
+
+            //if not the players turn it doesn't allow interaction
+            if(!playerTurn){
+                return;
+            }
+
+            //get location of activity
+            double mX = e.getX();
+            double mY = e.getY();
+            int mCellX = (int)mX/33;
+            int mCellY = (int)mY/33;
+
+            textTop = "";
+
+            //if in the grid color square to location of mouse
+            if(inGrid(grid2,mCellX,mCellY)){
+                cursor2.cursorToMouse(grid2,mCellX,mCellY);
+            }
+
+            //stops user from guessing same thing multiple times
+            if(player2Grid.getGridContents(mCellX,mCellY).isHit()){
+                textBot = "Error block already chosen.";
+                return;
+            }
+            textBot = "";
+
+            //performs actions to process guess
+            //changes cell to hit status
+            player2Grid.getGridContents(mCellX,mCellY).hit();
+
+            //lowers hp if ship is in guess location
+            if(player2Grid.getGridContents(mCellX,mCellY).getContainsShip()){
+                player2Grid.getGridContents(mCellX,mCellY).getShip().lowerHP();
+                textTop = "Well done!";
+            }
+
+
+            //updates grid
+            colorGrid(grid2,player2Grid,false);
+
+            playerTurn = false;//change turn
+            computerGuess(player1Grid,grid);
+        });
+
+        //deals with rotation of ships
+        scene.setOnKeyPressed(e ->{
+            KeyCode key = e.getCode();
+            if (key.equals(KeyCode.R)){
+                if(shipsPlaced){
+                    return;
+                }
+                cursor.changeRotation();
+                //get the (x,y) cells and put them back into the cursorToMouse function to update rotation instantly
+                //...absolute hack, I am so sorry
+                int tempCellX = cursor.getCellX();
+                int tempCellY = cursor.getCellY();
+                cursor.cursorToMouse(grid, tempCellX, tempCellY);
             }
         });
 
@@ -205,61 +281,22 @@ public class Main extends Application {
             playerTurn = true;
         });
 
-        grid2.setOnMousePressed(e -> {
-        	//if not the players turn it doesn't allow interaction
-        	if(!playerTurn){
-        		return;
-			}
-            double mX = e.getX();
-            double mY = e.getY();
-            int mCellX = (int)mX/33;
-            int mCellY = (int)mY/33;
-
-            if(inGrid(grid2,mCellX,mCellY)){
-                cursor2.cursorToMouse(grid2,mCellX,mCellY);
-            }
-
-            player2Grid.getGridContents(mCellX,mCellY).hit();
-            if(player2Grid.getGridContents(mCellX,mCellY).getContainsShip()){
-                player2Grid.getGridContents(mCellX,mCellY).getShip().lowerHP();
-            }
-
-            colorGrid(grid2,player2Grid,true);
-
-            playerTurn = false;
-            computerGuess(player1Grid,grid);
-        });
-
-        scene.setOnKeyPressed(e ->{
-            KeyCode key = e.getCode();
-            if (key.equals(KeyCode.R)){
-            	if(shipsPlaced){
-            		return;
-				}
-                cursor.changeRotation();
-                //get the (x,y) cells and put them back into the cursorToMouse function to update rotation instantly
-                //...absolute hack, I am so sorry
-                int tempCellX = cursor.getCellX();
-                int tempCellY = cursor.getCellY();
-                cursor.cursorToMouse(grid, tempCellX, tempCellY);
-            }
-        });
-
         primaryStage.setTitle("BattleShip");
         primaryStage.setScene(scene1);
         primaryStage.show();
     }
 
-    private void computerGuess(Grid g,GridPane vGrid){
-        //time delay
+    private void computerGuess(Grid g,GridPane vGrid) {
+        //time delay?
+        textTop = "thinking....";
+
+        textTop = "";
         Point p;
         p = bot.getGuess();
         g.getGridContents(p.getX(),p.getY()).hit();
         if(g.getGridContents(p.getX(),p.getY()).getContainsShip()){
+            textTop = "You've been hit! Fight back!";
             g.getGridContents(p.getX(),p.getY()).getShip().lowerHP();
-            if(g.getGridContents(p.getX(),p.getY()).getShip().getHP() == 0){
-
-            }
         }
         colorGrid(vGrid,g,true);
         playerTurn = true;
@@ -284,11 +321,14 @@ public class Main extends Application {
 
     //needs to be changed to check contents of grid
     public static void colorGrid(GridPane vGrid,Grid g,boolean b){
-		for (int i = 0; i < 10; i++) {
+        //loops through all rectangles
+        for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++){
 				Rectangle r = new Rectangle();
 				r.setHeight(32);
 				r.setWidth(32);
+
+				//changes color based on status and contents
                 if(g.getGridContents(i,j).isHit()){
                     if(g.getGridContents(i,j).getContainsShip()){
                         r.setFill(Color.RED);
@@ -312,28 +352,8 @@ public class Main extends Application {
     public static void main(String[] args) {
         BotEasy computer = new BotEasy();
         computer.generateShips(player2Grid);
-        player2Grid.printGrid();
 
         Application.launch(args);
 
-
-
-        Point guess;
-        boolean result;
-
-        //this possibly will work
-//        while(true){
-//        	if(!playerTurn){
-//        		guess = computer.getGuess();
-//        		//check location on grid
-//				result = computerGrid.check(guess);
-//
-//				if(result){
-//					computerGrid.getGridContents(guess.getX(),guess.getY()).hit();
-//				}
-//
-//				colorGrid(grid,guess);
-//			}
-//		}
     }
 }
